@@ -34,21 +34,32 @@ document.querySelector('.check').addEventListener('click', function(){
 
 		//if the input is the exace same
 	} else if (guessimate === sNumber) {
-
 		document.querySelector('.message').textContent = "Congrads! You got it!";
+
 		//if the input is larger 
 	} else if (guessimate > sNumber) {
+
+		if (score > 0) {
 		//send the message of too high and lower score
 		document.querySelector('.message').textContent = "Too High";
 		score--;
 		document.querySelector('.score').textContent = score;
+	    } else {
+	    	document.querySelector('.message').textContent = "You Loose!"
+	    }//end if inside of larger guess
+
 		//if the input is smaller 
 	} else if (guessimate < sNumber) {
-		//send message of too low and
+
+		if (score > 0) {
+
+		//send message of too low and lower score
 		document.querySelector('.message').textContent = "Too Low";
 		score--;
-
 		document.querySelector('.score').textContent = score; 
+	   } else {
+	   	document.querySelector('.message').textContent = "You Loose!"
+	   }//End if smaller guess
 	}
 
 
