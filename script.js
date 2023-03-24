@@ -14,7 +14,7 @@ const sNumber = Math.trunc(Math.random() * 47) + 1;
 //Set Score counter
 let score = 23;
 
-//TESTING display SNumber
+//TESTING display SNumber. Delete after done testing.
 document.querySelector('.number').textContent = sNumber;
 
 
@@ -29,17 +29,28 @@ document.querySelector('.check').addEventListener('click', function(){
 	//if no value for input
 	if (!guessimate) {
 		//look through the DOM for Message. Change content to new message
+
 		document.querySelector('.message').textContent = "No Number selected FOOL!";
-		//if the input 
+
+		//if the input is the exace same
 	} else if (guessimate === sNumber) {
+
 		document.querySelector('.message').textContent = "Congrads! You got it!";
+		//if the input is larger 
 	} else if (guessimate > sNumber) {
+		//send the message of too high and lower score
 		document.querySelector('.message').textContent = "Too High";
 		score--;
 		document.querySelector('.score').textContent = score;
+		//if the input is smaller 
 	} else if (guessimate < sNumber) {
+		//send message of too low and
 		document.querySelector('.message').textContent = "Too Low";
 		score--;
-		document.querySelector('.score').textContent = score;
+
+		document.querySelector('.score').textContent = score; 
 	}
+
+
+
 });
