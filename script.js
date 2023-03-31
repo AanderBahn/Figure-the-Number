@@ -15,8 +15,14 @@ var sNumber = Math.trunc(Math.random() * 47) + 1;
 //Set Score counter
 let score = 20;
 
-//Set High Score
+//Set intial High Score
 var higherScore = 0;
+
+
+//FUNction for displaying message text
+const displayMessage = function (message) {
+	document.querySelector('.message').textContent = message;
+}
 
 //TESTING display SNumber. Delete after done testing.
 document.querySelector('.number').textContent = sNumber;
@@ -34,11 +40,14 @@ document.querySelector('.check').addEventListener('click', function(){
 	//if no value for input
 	if (!guessimate) {
 		//look through the DOM for Message. Change content to new message
-		document.querySelector('.message').textContent = "No Number selected FOOL!";
+		//document.querySelector('.message').textContent = "No Number selected FOOL!";
+		displayMessage("No Number selected FOOL!");
+
 
 	  //if the input is the exace same
 	} else if (guessimate === sNumber) {
-		document.querySelector('.message').textContent = "Congrads! You got it!";
+		//document.querySelector('.message').textContent = "Congrads! You got it!";
+		displayMessage("Congrads! You got it!");
 		//Change Background color
 		document.querySelector('body').style.backgroundColor = '#60b347';
 		//Change the width of number display
@@ -50,8 +59,24 @@ document.querySelector('.check').addEventListener('click', function(){
 			document.querySelector('.highscore').textContent = higherScore;
 		}
 
-	  //if the input is larger 
-	} else if (guessimate > sNumber) {
+	  //if guess different then answer
+	} else if (guessimate !== sNumber) {
+		if (score > 0) {
+		//send the message of too high and lower score
+		//document.querySelector('.message').textContent = guessimate > sNumber ? "Too High" : "Too Low";
+		displayMessage(guessimate > sNumber ? "Too High" : "Too Low");
+		score--;
+		document.querySelector('.score').textContent = score;
+	    } else {
+	    	//document.querySelector('.message').textContent = "You Loose!"
+	    	displayMessage("You Loose!");
+	    }//en
+	} 
+
+
+
+	//if the input is larger 
+	/*else if (guessimate > sNumber) {
 		//Score counter to work if above 0
 		if (score > 0) {
 		//send the message of too high and lower score
@@ -73,7 +98,7 @@ document.querySelector('.check').addEventListener('click', function(){
 	   } else {
 	   	document.querySelector('.message').textContent = "You Loose!"
 	   }//End if smaller guess
-	}
+	}*/
 });
 
 
@@ -86,7 +111,8 @@ document.querySelector('.again').addEventListener('click', function(){
     sNumber = Math.trunc(Math.random() * 47) + 1;
     document.querySelector('.number').textContent = sNumber;
     //Reset the message
-    document.querySelector('.message').textContent = "Start guessing...";
+    //document.querySelector('.message').textContent = "Start guessing...";
+    displayMessage("Start guessing...");
     //Reset the input
     document.querySelector('.guess').value = "";
 	//Reset Background color
